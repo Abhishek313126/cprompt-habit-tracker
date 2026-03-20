@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ── BRAND VARIABLES ─────────────────────────── */
+:root {
+  --brand:        #1e3a8a;
+  --brand-mid:    #2563eb;
+  --brand-light:  #3b82f6;
+  --bg:           #f0f4f8;
+  --surface:      #ffffff;
+  --border:       #e2e8f0;
+  --text:         #0f172a;
+  --muted:        #64748b;
+  --faint:        #94a3b8;
+
+  /* Stat card palette  (matches Reports preview) */
+  --stat-blue-bg:    #dbeafe;
+  --stat-blue-fg:    #1d4ed8;
+  --stat-green-bg:   #dcfce7;
+  --stat-green-fg:   #15803d;
+  --stat-yellow-bg:  #fef9c3;
+  --stat-yellow-fg:  #a16207;
+  --stat-red-bg:     #fee2e2;
+  --stat-red-fg:     #b91c1c;
+  --stat-purple-bg:  #ede9fe;
+  --stat-purple-fg:  #6d28d9;
+}
+
+/* ── RESET / BASE ────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ── SCROLLBAR ───────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; height: 5px; }
+::-webkit-scrollbar-track  { background: #f1f5f9; }
+::-webkit-scrollbar-thumb  { background: #cbd5e1; border-radius: 4px; }
+
+/* ── SHARED CARD ─────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(15,23,42,0.05);
+}
+
+/* ── STAT CARDS (Reports-page style) ─────────── */
+.stat-blue   { background: var(--stat-blue-bg);   color: var(--stat-blue-fg); }
+.stat-green  { background: var(--stat-green-bg);  color: var(--stat-green-fg); }
+.stat-yellow { background: var(--stat-yellow-bg); color: var(--stat-yellow-fg); }
+.stat-red    { background: var(--stat-red-bg);    color: var(--stat-red-fg); }
+.stat-purple { background: var(--stat-purple-bg); color: var(--stat-purple-fg); }
+
+.stat-card {
+  border-radius: 16px;
+  padding: 18px 20px;
+  border: 1px solid transparent;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.stat-card .stat-value {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.stat-card .stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 4px;
+  opacity: 0.75;
+}
+.stat-card .stat-icon {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+/* ── PROGRESS BAR ───────────────────────────── */
+.prog-track {
+  height: 10px;
+  background: #f1f5f9;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.5s cubic-bezier(.4,0,.2,1);
+}
+.prog-fill.blue   { background: linear-gradient(90deg, #2563eb, #60a5fa); }
+.prog-fill.green  { background: linear-gradient(90deg, #16a34a, #4ade80); }
+.prog-fill.yellow { background: linear-gradient(90deg, #ca8a04, #fbbf24); }
+.prog-fill.red    { background: linear-gradient(90deg, #dc2626, #f87171); }
+
+/* ── MINI PROGRESS (table rows) ─────────────── */
+.mini-prog-track { height: 6px; background: #f1f5f9; border-radius: 6px; overflow: hidden; flex: 1; }
+.mini-prog-fill  { height: 100%; border-radius: 6px; transition: width 0.4s ease; }
+
+/* ── HABIT CARDS ────────────────────────────── */
+.habit-row {
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.habit-row:hover {
+  box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+  transform: translateY(-1px);
+}
+.habit-row.done    { background: #f0fdf4; border-color: #86efac !important; }
+.habit-row.partial { background: #fffbeb; border-color: #fde68a !important; }
+.habit-row.pending { background: #fff1f2; border-color: #fca5a5 !important; }
+
+/* ── STATUS BUTTONS ─────────────────────────── */
+.status-btn { transition: all 0.12s; }
+.status-btn:hover { transform: scale(1.04); }
+.status-btn:active { transform: scale(0.97); }
+
+/* ── LOGIN GRADIENT ─────────────────────────── */
+.login-bg {
+  background: linear-gradient(135deg, #0a1628 0%, #1e3a8a 45%, #1d4ed8 100%);
+}
+
+/* ── NAV SHADOW ─────────────────────────────── */
+.nav-shadow { box-shadow: 0 1px 0 var(--border), 0 2px 8px rgba(15,23,42,0.06); }
+
+/* ── TABLE ──────────────────────────────────── */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table thead tr { background: #f8fafc; }
+.data-table th {
+  padding: 10px 14px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  white-space: nowrap;
+}
+.data-table td { padding: 11px 14px; border-top: 1px solid #f1f5f9; vertical-align: middle; }
+.data-table tbody tr:nth-child(odd) { background: white; }
+.data-table tbody tr:nth-child(even) { background: #fafafa; }
+.data-table tbody tr:hover { background: #f0f6ff; }
+
+/* ── FREQUENCY / SOP PILLS ──────────────────── */
+.freq-pill {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.sop-pill {
+  font-size: 10.5px;
+  font-weight: 500;
+  padding: 2px 9px;
+  border-radius: 99px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* ── SECTION DIVIDER ────────────────────────── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.section-header .label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #475569;
+}
+.section-header .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, #e2e8f0, transparent);
+}
+
+/* ── STREAK BADGE ───────────────────────────── */
+.streak-badge {
+  background: linear-gradient(135deg, #fef9c3, #fef08a);
+  border: 1.5px solid #fde047;
+  border-radius: 12px;
+  padding: 10px 14px;
+  text-align: center;
+}
+.streak-value { font-size: 22px; font-weight: 900; color: #b45309; }
+.streak-lbl   { font-size: 10px; color: #92400e; font-weight: 600; margin-top: 2px; }
+
+/* ── ANIMATIONS ─────────────────────────────── */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.animate-in { animation: fadeSlideIn 0.35s ease both; }
+.animate-countUp { animation: countUp 0.4s ease both; }
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; }
+
+/* ── PRINT ──────────────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+  .card { box-shadow: none; border: 1px solid #ddd; }
+}
